@@ -42,3 +42,19 @@ python3 setup.py
 - not giving satisfactory answers. (eg if asked to summarize a month's data, it does not search up all the chunks and generates summary from them, just one or two, despite search_kwargs={"k": 10}. is it due to the fact how I have (gemini has) chunked the data? most probably idk)
 
 - while doing setup, it is creating chunks of size greater than 1000 (why?)
+
+## $$ code to get data from [this site](https://satp.org/terrorist-activity/india-jan-2026)
+
+```
+copy(
+  $$(".more")
+    .map(more => {
+      const td = more.closest("td");
+      const prevTdText = td?.previousElementSibling?.innerText.trim() || "";
+      const moreText = more.innerText.trim();
+      return `${prevTdText}, 2026\n${moreText}`.trim();
+    })
+    .filter(Boolean)
+    .join("\n\n---\n\n")
+);
+```
